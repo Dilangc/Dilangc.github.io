@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>4 Meses Juntos ❤️</title>
+    <!-- Fuente bonita de Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@300;400;600&display=swap"
+        rel="stylesheet">
+    <style>
+        /* ==========================================
+           FONDO DE LIRIOS
+           ========================================== */
+        body {
+            margin: 0;
+            padding: 0;
+            /* Fondo de lirios con overlay oscuro para que se lea bien */
+            background:
+                linear-gradient(rgba(3, 1, 1, 0.7), rgba(8, 2, 2, 0.7)),
+                url('182970940-llamativa-belleza-floral-foto-de-estudio-de-lirios-rojos-sobre-un-fondo-negro.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            font-family: 'Poppins', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            color: #140202;
+            overflow-x: hidden;
+        }
+
+        /* ==========================================
+           CONTENEDOR PRINCIPAL
+           ========================================== */
+        .container {
+            background: rgba(133, 8, 8, 0.9);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(15, 5, 5, 0.534);
+            text-align: center;
+            max-width: 600px;
+            width: 90%;
+            animation: fadeIn 1.5s ease-in-out;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Tipografía y Títulos */
+        h1 {
+            font-family: 'Pacifico', cursive;
+            color: #ff4b6e;
+            font-size: 3rem;
+            margin-bottom: 10px;
+        }
+
+        h2 {
+            font-size: 1.2rem;
+            color: #858282;
+            margin-top: 0;
+            font-weight: 300;
+        }
+
+        /* La Foto Principal */
+        .photo-frame {
+            width: 200px;
+            height: 200px;
+            margin: 20px auto;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 5px solid #ebe4e4;
+            box-shadow: 0 5px 15px rgba(228, 222, 222, 0.788);
+        }
+
+        .photo-frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* El Contador */
+        .timer {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin: 30px 0;
+        }
+
+        .time-box {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .time-box span {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #ff4b6e;
+        }
+
+        .time-box label {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            color: #e2d7d7;
+        }
+
+        /* Mensaje */
+        .message {
+            font-size: 1rem;
+            line-height: 1.6;
+            color: #d6cbcb;
+            margin-bottom: 30px;
+        }
+
+        /* ==========================================
+           ÁLBUM DE FOTOS
+           ========================================== */
+        .album-section {
+            margin-top: 40px;
+            padding-top: 30px;
+            border-top: 2px dashed #fecfef;
+        }
+
+        .album-title {
+            font-family: 'Pacifico', cursive;
+            color: #ff4b6e;
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+        }
+
+        .photo-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .photo-item {
+            aspect-ratio: 1;
+            border-radius: 10px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            position: relative;
+        }
+
+        .photo-item:hover {
+            transform: scale(1.05);
+            z-index: 10;
+            box-shadow: 0 5px 20px rgba(255, 75, 110, 0.4);
+        }
+
+        .photo-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Modal para ver fotos grandes */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal img {
+            max-width: 90%;
+            max-height: 90%;
+            border-radius: 10px;
+            animation: zoomIn 0.3s ease;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: white;
+            font-size: 40px;
+            cursor: pointer;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes zoomIn {
+            from {
+                transform: scale(0.5);
+                opacity: 0;
+            }
+
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 480px) {
+            .photo-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            h1 {
+                font-size: 2.2rem;
+            }
+
+            .timer {
+                gap: 8px;
+            }
+
+            .time-box span {
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <h1>4 Meses</h1>
+        <h2>Juntos♥</h2>
+
+        <!-- FOTO PRINCIPAL: Cambia el 'src' por tu foto -->
+        <div class="photo-frame">
+            <img src="WhatsApp Image 2026-02-25 at 7.20.23 PM.jpeg">
+        </div>
+
+        <!-- Contador de Tiempo -->
+        <div class="timer">
+            <div class="time-box">
+                <span id="days">00</span>
+                <label>Días</label>
+            </div>
+            <div class="time-box">
+                <span id="hours">00</span>
+                <label>Horas</label>
+            </div>
+            <div class="time-box">
+                <span id="minutes">00</span>
+                <label>Minutos</label>
+            </div>
+            <div class="time-box">
+                <span id="seconds">00</span>
+                <label>Segundos</label>
+            </div>
+        </div>
+
+        <div class="message">
+            <p>Cada segundo a tu lado es un regalo. Gracias por estos 4 meses increíbles, por tu sonrisa, tu apoyo y
+                todo tu amor, Te amo mucho bebé.
+        </div>
+
+        <!-- ÁLBUM DE FOTOS -->
+        <div class="album-section">
+            <h3 class="album-title">Nuestros Recuerdos 📸</h3>
+
+            <div class="photo-grid">
+                <!-- FOTO 1 -->
+                <div class="photo-item" onclick="openModal(this)">
+                    <img src="WhatsApp Image 2026-02-25 at 7.43.38 PM (2).jpeg" alt="Foto 1">
+                </div>
+                <!-- FOTO 2 -->
+                <div class="photo-item" onclick="openModal(this)">
+                    <img src="WhatsApp Image 2026-02-25 at 7.43.38 PM.jpeg" alt="Foto 2">
+                </div>
+                <!-- FOTO 3 -->
+                <div class="photo-item" onclick="openModal(this)">
+                    <img src="WhatsApp Image 2026-02-25 at 7.49.16 PM.jpeg" alt="Foto 3">
+                </div>
+                <!-- FOTO 4 -->
+                <div class="photo-item" onclick="openModal(this)">
+                    <img src="WhatsApp Image 2026-02-25 at 7.48.47 PM.jpeg" alt="Foto 4">
+                </div>
+                <!-- FOTO 5 -->
+                <div class="photo-item" onclick="openModal(this)">
+                    <img src="WhatsApp Image 2026-02-25 at 9.39.48 PM.jpeg" alt="Foto 5">
+                </div>
+                <!-- FOTO 6 -->
+                <div class="photo-item" onclick="openModal(this)">
+                    <img src="WhatsApp Image 2026-02-25 at 9.43.50 PM.jpeg" alt="Foto 6">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal para ver fotos grandes -->
+    <div class="modal" id="photoModal" onclick="closeModal()">
+        <span class="modal-close" onclick="closeModal()">&times;</span>
+        <img id="modalImage" src="" alt="Foto grande">
+    </div>
+
+    <script>
+        // ==========================================
+        // CONFIGURACIÓN: CAMBIA LA FECHA AQUÍ
+        // Pon el día que iniciaron en formato: Mes/Día/Año
+        // Ejemplo: new Date("02/14/2024")
+        // ==========================================
+        const startDate = new Date("10/30/25");
+
+        // Función para actualizar el contador
+        function updateTimer() {
+            const now = new Date();
+            const diff = now - startDate;
+
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+            document.getElementById("days").innerText = days;
+            document.getElementById("hours").innerText = hours;
+            document.getElementById("minutes").innerText = minutes;
+            document.getElementById("seconds").innerText = seconds;
+        }
+
+        setInterval(updateTimer, 1000);
+        updateTimer();
+
+        // Funciones para el modal de fotos
+        function openModal(element) {
+            const imgSrc = element.querySelector('img').src;
+            document.getElementById('modalImage').src = imgSrc;
+            document.getElementById('photoModal').classList.add('active');
+        }
+
+        function closeModal() {
+            document.getElementById('photoModal').classList.remove('active');
+        }
+
+        // Cerrar modal con tecla Escape
+        document.addEventListener('keydown', function (e) {
+            if (e.key === 'Escape') {
+                closeModal();
+            }
+        });
+    </script>
+
+</body>
+
+</html>
